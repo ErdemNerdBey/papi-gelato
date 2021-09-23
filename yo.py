@@ -7,7 +7,7 @@ prijsHoorntje = 1.25
 bakje = ''
 caramel = ''
 slagroom = ''
-sprinkel = ''
+prijsSprinkel = 0
 
 
 def toppingVraag():
@@ -16,7 +16,7 @@ def toppingVraag():
     if topping == 'd' or 'D':
         caramel = True
     elif topping == 'c' or 'C':
-        sprinkel = True
+        prijsSprinkel == 0.30
     elif topping == 'b' or 'B':
         slagroom = True
     elif topping == 'a' or 'A':
@@ -29,35 +29,39 @@ print("Welkom bij Papi Gelato.")
 def bonnetje():
     print('---------["Papi Gelato"]---------')
     print(f'bolletjes       {bolletjes}x  €1,11 = €{round(float(bolletjes * prijsBolletjes),2)}  ')
-    if bakje and slagroom == True:
-        print(f'topping b           1 x € = €0.50\n')
-        print(f'totaal                    = €{bolletjes * 1.11 + 0.50 + prijsBakje}')
+    if bakje:
+        print(f'bakje           1 x €{prijsBakje} = €{prijsBakje}')
+        if toppingVraag == 'c' or 'C':
+            print(f'topping c       {bolletjes} x €{prijsSprinkel} = €{bolletjes * prijsSprinkel}\n')
+            print(f'totaal                    = €{bolletjes * 1.11 + bolletjes * prijsSprinkel + prijsBakje}')
+        elif bakje and slagroom == True:
+            print(f'topping b           1 x € = €0.50\n')
+            print(f'totaal                    = €{bolletjes * 1.11 + 0.50 + prijsBakje}')
+        else:
+            print(f'totaal                    = €{bolletjes * 1.11 + prijsBakje}')
+    elif hoorntje:
+        print(f'hoorntje        1 x €{prijsHoorntje} = €{prijsHoorntje}')
+        if toppingVraag == 'c' or 'C':
+            print(f'topping c       {bolletjes} x €{prijsSprinkel} = €{bolletjes * prijsSprinkel}\n')
+            print(f'totaal                    = €{bolletjes * 1.11 + bolletjes * prijsSprinkel + prijsHoorntje}')
+        elif hoorntje and slagroom == True:
+            print(f'topping b           1 x € = €0.50\n')
+            print(f'totaal                    = €{bolletjes * 1.11 + 0.50 + prijsHoorntje}')
+        else:
+            print(f'totaal                    = €{bolletjes * 1.11 + prijsBakje}')
     elif bakje and caramel == True:
         print(f'bakje           1 x €{prijsBakje} = €{prijsBakje}')
         print(f'topping d       1 x €0.90 = € 0,90\n')
         print(f'totaal                    = €{bolletjes * 1.11 + 0.90 + prijsHoorntje}')
-    elif bakje:
-        print(f'bakje           1 x €{prijsBakje} = €{prijsBakje}')
-        if sprinkel == True:
-            print(f'topping c       {bolletjes} x €0.30 = €{bolletjes * 0.30}\n')
-            print(f'totaal                    = €{bolletjes * 1.11 + bolletjes * 0.30 + prijsBakje}')
-            print(sprinkel)
-        else:
-            print(f'\ntotaal                    = €{bolletjes * 1.11 + prijsBakje}')
-    elif hoorntje and slagroom == True:
-        print(f'topping b           1 x € = €0.50\n')
-        print(f'totaal                    = €{bolletjes * 1.11 + 0.50 + prijsHoorntje}')
     elif hoorntje and caramel == True:
         print(f'hoorntje           1 x €{prijsHoorntje} = €{prijsHoorntje}')
         print(f'topping d       1 x €0.60 = € 0.60\n')
         print(f'totaal                    = €{bolletjes * 1.11 + 0.60 + prijsHoorntje}')
-    elif hoorntje:
-        print(f'hoorntje        1 x €{prijsHoorntje} = €{prijsHoorntje}')
-        if sprinkel == True:
-            print(f'topping c       {bolletjes} x €0.30 = €{bolletjes * 0.30}\n')
-            print(f'totaal                    = €{bolletjes * 1.11 + bolletjes * 0.30 + prijsHoorntje}')
-        else:
-            print(f'\ntotaal                    = €{bolletjes * 1.11 + prijsBakje}')
+
+
+
+
+
 
 def overnieuw3():
     keuze3 = input(f"wilt u nogmeer bestellen?\n".lower())
@@ -100,6 +104,7 @@ def overnieuw():
                     hoorntje = True
                     print(f"Oke dan krijgt u van mij een hoorntje met {bolletjes} bolletjes!")
                     toppingVraag()
+                    time.sleep(4)
                     bonnetje()
                     hoorntje = False
                     caramel = False
@@ -114,6 +119,7 @@ def overnieuw():
             bakje = True
             print(f"Oke dan krijgt u van mij een bakje met {bolletjes} bolletjes!")
             toppingVraag()
+            time.sleep(4)
             bonnetje()
             bakje = False
             caramel = False

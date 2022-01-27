@@ -87,7 +87,7 @@ def hoeveelbollen():
         print('Ik heb u niet goed verstaan.')
         hoeveelbollen()
         return
-    if bolletjes < 1 or bolletjes > 9:
+    if bolletjes < 1 or bolletjes > 8:
         print('We hebben geen bakjes voor die hoeveelheid.')
         hoeveelbollen()
 
